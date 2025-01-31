@@ -6,7 +6,7 @@ const { hashPassword, comparePassword } = require('../utils/auth');
 // Get all users
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find({}, { password: 0 });
+    const users = await User.find({});
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Get user by ID
 router.get('/:id', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id, { password: 0 });
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (error) {
